@@ -265,7 +265,7 @@
 
             var txt = document.getElementById('log');
     const {
-      createFFmpeg
+      createFFmpeg, fetchFile
     } = FFmpeg;
     const ffmpeg = createFFmpeg({
       log: true,
@@ -301,21 +301,16 @@
 
 
     }
-
     const transcodetest = async () => {
       const message = document.getElementById('message');
-      // const {
-      //   name
-      // } = moviedata;
       message.innerHTML = 'Loading ffmpeg-core.js';
       await ffmpeg.load();
-      //await ffmpeg.write(name, moviedata);
-      //await ffmpeg.write('/idbfs/7e8d80576ac7835943650e9b5af4b7ee/VideoWriterExample_output.avi', blob);
+
+      //mp4の動画が生成されるプログラム
       await ffmpeg.write('VideoWriterExample_output.avi', blob);
       message.innerHTML = 'Start transcoding';
-      //await ffmpeg.transcode('/idbfs/7e8d80576ac7835943650e9b5af4b7ee/VideoWriterExample_output.avi', 'output.mp4');
-      await ffmpeg.transcode('VideoWriterExample_output.avi', 'output.mp4');
-      //await ffmpeg.transcode(name, 'output.mp4');
+      //await ffmpeg.transcode('VideoWriterExample_output.avi', 'output.mp4');
+      await ffmpeg.run('-i', 'VideoWriterExample_output.avi', '-s','1280x720', 'output.mp4');
       message.innerHTML = 'Transcoding completed';
       const data = ffmpeg.read('output.mp4');
       ffmpeg.remove('output.mp4');
@@ -324,12 +319,7 @@
       video.src = URL.createObjectURL(new Blob([data.buffer], {
         type: 'video/mp4'
       }));
-
-      //動画をダウンロード
-      //参照：https://qiita.com/kerupani129/items/99fd7a768538fcd33420
-
       const a = document.createElement('a');
-      //a.href = URL.createObjectURL(new Blob(['test text\n'], {type: 'text/plain'}));
       a.href = video.src;
       a.download = 'movie.mp4';
 
@@ -337,22 +327,10 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
-      // btn.removeEventListener('click', togglePlay);
-      // btn.addEventListener('click', togglePlay);
-
     }
 
     const elm = document.getElementById('uploader');
     elm.addEventListener('change', transcode);
-
-
-
-
-
-
-
-
 
   function FfmpegMethod(parameter) {
     console.log(parameter.callbackMoviePathName)
