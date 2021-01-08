@@ -1,27 +1,4 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <!-- <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | VRMAppWebGLBuildSample</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/BuildWebGlMovieMakerVer14.json", {onProgress: UnityProgress});
-    </script>
-  </head>
-  <body>
-    <div class="webgl-content">
-      <div id="unityContainer" style="width: 1280px; height: 720px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">VRMAppWebGLBuildSample</div>
-      </div>
-    </div>
-  </body> -->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -309,8 +286,8 @@
       //mp4の動画が生成されるプログラム
       await ffmpeg.write('VideoWriterExample_output.avi', blob);
       message.innerHTML = 'Start transcoding';
-      //await ffmpeg.transcode('VideoWriterExample_output.avi', 'output.mp4');
-      await ffmpeg.run('-i', 'VideoWriterExample_output.avi', '-s','1280x720', 'output.mp4');
+      await ffmpeg.transcode('VideoWriterExample_output.avi', 'output.mp4');
+      //await ffmpeg.run('-i', 'VideoWriterExample_output.avi', '-s','1280x720', 'output.mp4');
       message.innerHTML = 'Transcoding completed';
       const data = ffmpeg.read('output.mp4');
       ffmpeg.remove('output.mp4');
