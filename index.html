@@ -7,8 +7,6 @@
     <title>Unity WebGL Player | VRMAppWebGLBuildSample</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-
-
     <style type="text/css">
         body {
             background: #999999;
@@ -61,10 +59,10 @@
     <input type="file" id="uploader">
     <p id="message"></p>
     <br>
-
     <div>
       <textarea id='log' rows=30 cols=100 autofocus></textarea>
     </div>
+
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas"></canvas>
       <div id="unity-loading-bar">
@@ -77,18 +75,16 @@
         WebGL builds are not supported on mobile devices.
       </div>
       <div id="unity-footer">
-        <!-- <div id="unity-webgl-logo"></div> -->
-        <!-- <div id="unity-fullscreen-button"></div> -->
         <div id="unity-build-title"></div>
       </div>
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/BuildWebGlZoomMovieMaker2020Ver13.loader.js";
+      var loaderUrl = buildUrl + "/BuildWebGlZoomMovieMaker2020Ver17.loader.js";
       var config = {
-        dataUrl: buildUrl + "/BuildWebGlZoomMovieMaker2020Ver13.data",
-        frameworkUrl: buildUrl + "/BuildWebGlZoomMovieMaker2020Ver13.framework.js",
-        codeUrl: buildUrl + "/BuildWebGlZoomMovieMaker2020Ver13.wasm",
+        dataUrl: buildUrl + "/BuildWebGlZoomMovieMaker2020Ver17.data.unityweb",
+        frameworkUrl: buildUrl + "/BuildWebGlZoomMovieMaker2020Ver17.framework.js.unityweb",
+        codeUrl: buildUrl + "/BuildWebGlZoomMovieMaker2020Ver17.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "KiliWare",
         productName: "VRMAppWebGLBuildSample",
@@ -99,7 +95,7 @@
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      // var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var mobileWarning = document.querySelector("#unity-mobile-warning");
 
       config.devicePixelRatio = 1;
@@ -133,9 +129,6 @@
       document.body.appendChild(script);
     </script>
   </body>
-
-
-
   <body>
     <div class="title" id="hide_id">index DBの使用テスト</div>
     <div class="center" id="hide_id"><a href="./deleteIndexedDB.html">indexed DB を消去する</a></div>
@@ -373,5 +366,4 @@
   window.addEventListener('unityMessage', recieveMessage, false)
   </script>
 </body>
-
 </html>
